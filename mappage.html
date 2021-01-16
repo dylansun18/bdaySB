@@ -9,17 +9,28 @@
     <script>
     	function initMap() {
 
-		  const SB = { lat: 34.41383554834815, lng: -119.85927027507296 };
+			const SB = { lat: 34.41383554834815, lng: -119.85927027507296 };
 
-		  const map = new google.maps.Map(document.getElementById("map"), {
-		    zoom: 13,
-		    center: SB,
-		  });
-		  // The marker, positioned at Uluru
-		  const marker = new google.maps.Marker({
-		    position: uluru,
-		    map: map,
-		  });
+			var myStyles =[
+			    {
+			        featureType: "poi",
+			        elementType: "labels",
+			        stylers: [
+			              { visibility: "off" }
+			        ]
+			    }
+			];
+
+			const map = new google.maps.Map(document.getElementById("map"), {
+			    zoom: 13,
+			    center: SB,
+			    styles: myStyles
+			});
+			  // The marker, positioned at Uluru
+			const marker = new google.maps.Marker({
+			    position: uluru,
+			    map: map,
+			});
 		}
     </script>
     <style>
