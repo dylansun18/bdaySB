@@ -7,6 +7,8 @@
       defer
     ></script>
     <script>
+    	//This code provided by Google initializes a map, and puts it into the <div> with id
+    	//="map"
     	function initMap() {
 
 			const SB = { lat: 34.41383554834815, lng: -119.85927027507296 };
@@ -32,16 +34,27 @@
 			    map: map,
 			});
 		}
+
+		//This code prepares and sends an XML http request, which will go to our server with a
+		//link and return with data (restaurant coords, etc).
+		function getData() {
+		    var xhttp = new XMLHttpRequest();
+		    xhttp.onreadystatechange = function() {
+		         if (this.readyState == 4 && this.status == 200) {
+		             alert(this.responseText);
+		         }
+		    };
+		    xhttp.open("POST", "Your Rest URL Here", true);
+		    xhttp.setRequestHeader("Content-type", "application/json");
+		    xhttp.send("Your JSON Data Here");
+		}
     </script>
     <style>
     	#map {
 		  height: 400px;
-		  /* The height is 400 pixels */
 		  width: 800px;
-		  /* The width is the width of the web page */
 		}
     </style>
-    <!-- jsFiddle will insert css and js -->
   </head>
   <body>
     <h3>My Google Maps Demo</h3>
