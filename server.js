@@ -12,12 +12,18 @@ app.get('/', function(req, res){
 	MongoClient.connect(url, function(err, db) {
 	  if (err) throw err;
 	  var dbo = db.db("mydb");
-	  dbo.collection("locations").findOne({}, function(err, result) {
-	    if (err) throw err;
-	    console.log(result.name);
-	    res.send(result);
-	    db.close();
+	  dbo.collection("locations").find({}).toArray(function(err, result) {
+	  	if(err) throw err;
+	  	console.log(result);
+	  	res.send(result);
+	  	db.close();
 	  });
+	  // dbo.collection("locations").findOne({}, function(err, result) {
+	  //   if (err) throw err;
+	  //   console.log(result.name);
+	  //   res.send(result);
+	  //   db.close();
+	  // });
 	});
 });
 
