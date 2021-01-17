@@ -20,6 +20,12 @@ h3 {
   background-color: lightslategrey;
 }
 
+#instructions {
+  width: 900px;
+  padding-bottom: 5px;
+  text-align: center;
+  margin-bottom: 2px;
+}
 
 #map {
   border-radius: 10px;
