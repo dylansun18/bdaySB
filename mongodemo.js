@@ -4,12 +4,12 @@ var url = "mongodb://localhost:27017/";
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("mydb");
-  var myobj = {name:"Chili's",
-  			   address:"6950 Market Pl Dr, Goleta, CA 93117",
-  			   coords:{lat:34.42971653461044, lng:-119.87057949509985},
-  			   gift:"1 free dessert",
+  var myobj = {name:"Kyle's Kitchen",
+  			   address:"900 Embarcadero del Mar, Isla Vista, CA 93117",
+  			   coords:{lat:34.412986413053574, lng:-119.85688506944356},
+  			   gift:"1 ice cream cone",
   			   type:"restaurant",
-  			   link:"https://www.chilis.com/register"}
+  			   link:"https://www.kyleskitchen.com/rewards"}
 ;
   dbo.collection("locations").insertOne(myobj, function(err, res) {
     if (err) throw err;
