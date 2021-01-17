@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+	<link rel="preconnect" href="https://fonts.gstatic.com"> 
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
   	<link rel="stylesheet" href="purple.css">
     <title>Add Map</title>
     <script
@@ -12,7 +14,6 @@
     	//="map"
     	var map;
     	function initMap() {
-
 			const SB = { lat: 34.41383554834815, lng: -119.85927027507296 };
 
 			var myStyles =[
@@ -121,11 +122,13 @@
   </head>
   <body>
   	<div id="container1">
-    <h3 id="header">My Google Maps Demo</h3>
-    <!--The div element for the map -->
-    <div id="map"></div>
-    <button class="tm-btn" type="button" onclick="getData()">Request data</button>
-    <p id="demo"></p>
+		<h3 id="header">BDAYFREEDAY</h3>
+		<div id="box"></div>
+    	<!--The div element for the map -->
+		<div id="instructions">Click request data to find nearby birthday deals!<br>Clicking on the markers will give you information on a surprise gift and how to receive it. </div>
+		<div id="map"></div>
+    	<button class="request-btn" type="button" onclick="getData()">Request data</button>
+	    <p id="demo"></p>
 	</div>
   </body>
 </html>
