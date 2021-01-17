@@ -9,6 +9,7 @@
     <script>
     	//This code provided by Google initializes a map, and puts it into the <div> with id
     	//="map"
+    	var map;
     	function initMap() {
 
 			const SB = { lat: 34.41383554834815, lng: -119.85927027507296 };
@@ -23,10 +24,12 @@
 			    }
 			];
 
-			const map = new google.maps.Map(document.getElementById("map"), {
+			map = new google.maps.Map(document.getElementById("map"), {
 			    zoom: 12,
 			    center: SB,
-			    styles: myStyles
+			    styles: myStyles,
+			    gestureHandling: 'greedy',
+			    mapTypeId: 'terrain'
 			});
 			var infoWindow = new google.maps.InfoWindow();
 			
@@ -52,35 +55,23 @@
 		      handleLocationError(false, infoWindow, map.getCenter());
 		    }
 		  
-
-
-			// The marker, positioned at Kyles Kitchen
-			// const marker1 = new google.maps.Marker({
-			//     position: {lat:34.43050767484454, lng:-119.87223431698523},
-			//     map: map,
-			// });
-
-			var locations = [
-    			{name:"applebees", coords: {lat:34.43050767484454, lng:-119.87223431698523}},
-    			{name:"applebees2", coords: {lat:34.42950601384035, lng:-119.87252665324175}},
-    			{name:"applebees3", coords: {lat:34.439652395764426, lng:-119.74912597192386}},
-    		]
-
-			for(var i = 0; i < locations.length; i++){
-				const marker = new google.maps.Marker({
-				    position: locations[i].coords,
-				    map: map,
-				});
-			}
 		}
 
 		//This code prepares and sends an XML http request, which will go to our server with a
 		//link and return with data (restaurant coords, etc).
 		function getData() {
+
 		    var xhttp = new XMLHttpRequest();
 		    xhttp.onreadystatechange = function() {
 		         if (this.readyState == 4 && this.status == 200) {
 		             document.getElementById("demo").innerHTML = this.responseText;
+		             var temp = JSON.parse(this.responseText);
+		             for(var i = 0; i < temp.length; i++){
+					    marker = new google.maps.Marker({
+					    	position: temp[i].coords,
+					    	map: map
+					    });
+		             }
 		         }
 		    };
 		    xhttp.open("GET", "http://localhost:5000", true);
