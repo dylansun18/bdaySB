@@ -24,15 +24,30 @@
 			];
 
 			const map = new google.maps.Map(document.getElementById("map"), {
-			    zoom: 13,
+			    zoom: 12,
 			    center: SB,
 			    styles: myStyles
 			});
-			  // The marker, positioned at Uluru
-			const marker = new google.maps.Marker({
-			    position: uluru,
-			    map: map,
-			});
+
+
+			// The marker, positioned at Kyles Kitchen
+			// const marker1 = new google.maps.Marker({
+			//     position: {lat:34.43050767484454, lng:-119.87223431698523},
+			//     map: map,
+			// });
+
+			var locations = [
+    			{name:"applebees", coords: {lat:34.43050767484454, lng:-119.87223431698523}},
+    			{name:"applebees2", coords: {lat:34.42950601384035, lng:-119.87252665324175}},
+    			{name:"applebees3", coords: {lat:34.439652395764426, lng:-119.74912597192386}},
+    		]
+
+			for(var i = 0; i < locations.length; i++){
+				const marker = new google.maps.Marker({
+				    position: locations[i].coords,
+				    map: map,
+				});
+			}
 		}
 
 		//This code prepares and sends an XML http request, which will go to our server with a
@@ -41,18 +56,17 @@
 		    var xhttp = new XMLHttpRequest();
 		    xhttp.onreadystatechange = function() {
 		         if (this.readyState == 4 && this.status == 200) {
-		             alert(this.responseText);
+		             document.getElementById("demo").innerHTML = this.responseText;
 		         }
 		    };
-		    xhttp.open("POST", "Your Rest URL Here", true);
-		    xhttp.setRequestHeader("Content-type", "application/json");
-		    xhttp.send("Your JSON Data Here");
+		    xhttp.open("GET", "http://localhost:5000", true);
+  			xhttp.send();
 		}
     </script>
     <style>
     	#map {
-		  height: 400px;
-		  width: 800px;
+		  height: 500px;
+		  width: 900px;
 		}
     </style>
   </head>
@@ -60,5 +74,7 @@
     <h3>My Google Maps Demo</h3>
     <!--The div element for the map -->
     <div id="map"></div>
+    <button type="button" onclick="getData()">Request data</button>
+    <p id="demo"></p>
   </body>
 </html>
